@@ -1,0 +1,9 @@
+version: '3'
+services:
+  raml:
+    build: .
+    ports:
+      - "8090:8080"
+      - "8091:8081"
+    volumes:
+      - ./data:/app/data

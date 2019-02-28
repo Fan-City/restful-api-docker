@@ -1,0 +1,120 @@
+displayName: User
+
+post:
+  description: 注册一个新用户
+  body:
+    application/json:
+      schema: |
+        {
+          "type": "object",
+          "$schema": "http://json-schema.org/draft-03/schema",
+          "id": "2nldksfr4f2ifoa4g4vfsdfdsfdaf2",
+          "required": true,
+          "properties": {
+            "account": {
+              "type": "string",
+              "required": true,
+              "minLength": 2,
+              "maxLength": 20
+            },
+            "password": {
+              "type": "string",
+              "required": true,
+              "minLength": 6,
+              "maxLength": 32
+            },
+            "phoneNumber": {
+              "type": "string",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "required": false
+            }
+          }
+        }
+  responses:
+    201:
+      body:
+        application/json:
+          example: |
+            {
+              "id": "2nldksfr4f2ifoa4g43rvfsdfdsfdaf2",
+              "account": "michael",
+              "phoneNumber": "13971332745",
+              "gender": "MALE",
+              "name": "徐天乐"
+            } 
+
+get:
+  description: 查看用户列表
+  is: [ pageable , searchable ]
+  queryParameters:
+    gender:
+      description: "性别"
+      required: false
+      type: string
+      pattern: "MALE|FEMALE"
+  responses:
+    200:
+      body:
+        application/json:
+          example: |
+            [
+              {
+                "id": "2nldksfr4f2ifoa4g43rvfsdfdsfdaf2",
+                "account": "michael",
+                "phoneNumber": "13971332745",
+                "gender": "MALE",
+                "name": "徐天乐"
+              }
+            ]
+
+/{account}:
+  get:
+    description: 查看给定账户名的用户信息
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                  "additionlMessage": "http://www.qq.com",
+                  "businessId": "",
+                  "code": "10010",
+                  "codeEN": "userinfoFaildError",
+                  "exceptionType": "",
+                  "message": "未找到用户信息",
+                  "serviceName": "",
+                  "token": "user"
+              }
+  put:
+    description: 更新给定账户名的用户信息
+    body:
+      application/json:
+        schema: |
+          {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "id2",
+            "required": true,
+            "properties": {
+              "password": {
+                "type": "string",
+                "required": true,
+                "minLength": 6,
+                "maxLength": 32
+              },
+              "name": {
+                "type": "string",
+                "required": false
+              }
+            }
+          }
+    responses:
+      301:
+
+  delete:
+    description: 删除给定账户名的用户
+    responses:
+      204:

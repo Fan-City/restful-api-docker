@@ -1,0 +1,28 @@
+{
+  "name": "restful-api-raml",
+  "version": "1.0.0",
+  "description": "利用Docker容器化技术将Raml构建RESTful API的构建动作和数据进行分离，使得任何安装了docker的机器都可以一键启动所有服务",
+  "main": "index.js",
+  "dependencies": {
+    "raml2html": "^6.1.0",
+    "live-server": "^1.2.0",
+    "osprey-mock-service": "^0.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "docs-generator": "raml2html data/api.raml > api.html",
+    "docs-server": "live-server --port=8091 --watch=api.html --entry-file=api.html",
+    "mock-server": "osprey-mock-service -f data/api.raml -p 8090 --cors",
+    "api-watcher": "nodemon --watch data --ext raml,json,markdown watcher-tasks.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.michaelxu.cn/web-developer/restful-api-raml.git"
+  },
+  "keywords": [
+    "restful-api-raml-docker"
+  ],
+  "author": "michael.xu1983@qq.com",
+  "license": "ISC"
+}

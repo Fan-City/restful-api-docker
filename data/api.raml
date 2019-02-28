@@ -1,0 +1,25 @@
+#%RAML 1.0
+---
+title: Share Library
+description: A whole set of apis for Share Library.
+version: '1'
+protocols: [ HTTP, HTTPS ]
+mediaType: application/json
+baseUri: https://jsonplaceholder.typicode.com/
+
+documentation:
+  - title: Home
+    content: |
+      Welcome to the Share Library RESTful API Documentation.
+  - title: Legal
+    content: !include docs/legal.markdown
+
+types:
+  Email: !include data-types/email.raml
+  Url: !include data-types/url.raml
+
+traits:
+  pageable: !include traits/pageable.raml
+  searchable: !include traits/searchable.raml
+
+/users: !include raml/user.raml
